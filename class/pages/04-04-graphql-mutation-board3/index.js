@@ -35,7 +35,7 @@ export default function GraphqlMutationBoard2Page(){
         })
         console.log(result)
         console.log(result.data.createBoard.message)
-        
+        setAaa(result.data.createBoard.message)
     } 
 
     return(
