@@ -163,7 +163,7 @@ import {
             </ListNameList>
             {props.data?.fetchBoards.map((el, index) => (
               <Row key={el._id}>
-                <Column>{index}</Column>
+                <Column>{10 - index}</Column>
                 <Column>{el.title}</Column>
                 <Column>{el.writer}</Column>
                 <Column>{el.createdAt}</Column>
@@ -182,7 +182,7 @@ import {
               <img src="/images/listright.png" />
             </ArrowPhoto>
           </PageNumber>
-          <RegisterBoardButton>✏ 게시물 등록하기</RegisterBoardButton>
+          <RegisterBoardButton onClick={props.onClickWrite}>✏ 게시물 등록하기</RegisterBoardButton>
         </WrapperFooter>
       </Wrapper>
     );

@@ -19,6 +19,18 @@ export default function Detail() {
     });
   }
 
-  return <DetailUI router={router} data={data} onClickDelete={onClickDelete} />;
+  async function onClickEdit() {
+    router.push(`${router.query.number}/edit`);
+  }
+
+  return (
+    <DetailUI
+      router={router}
+      data={data}
+      onClickList={onClickList}
+      onClickDelete={onClickDelete}
+      onClickEdit={onClickEdit}
+    />
+  );
   
 }

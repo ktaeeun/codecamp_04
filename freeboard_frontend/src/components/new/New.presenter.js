@@ -27,7 +27,7 @@ import {
   export default function NewWriteUI(props) {
     return (
       <Wrapper>
-        <Title>게시물 수정</Title>
+         <Title>{props.isEdit ? "게시물 수정" : "게시물 등록"}</Title>
         <WriterWrapper>
           <TextWrapper>
             <Label>작성자</Label>
@@ -106,9 +106,16 @@ import {
         </OptionWrapper>
         <ButtonWrapper>
           <CancelButton>취소하기</CancelButton>
-          <SubmitButton color={props.color} onClick={props.onClickCorrect} disabled={!props.color}>
+          {!props.isEdit && (<SubmitButton color={props.color} onClick={props.onClickCorrect} disabled={!props.color}>
             등록하기
           </SubmitButton>
+        )}
+
+        {props.isEdit && (<SubmitButton color={props.color} onClick={props.onClickMoveToEdit} disabled={!props.color}>
+            수정하기
+          </SubmitButton>
+        )}
+          
         </ButtonWrapper>
       </Wrapper>
     );
