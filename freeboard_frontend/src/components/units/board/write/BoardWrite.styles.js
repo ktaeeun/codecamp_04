@@ -155,23 +155,25 @@ export const CancelButton = styled.button`
   cursor: pointer;
 `;
 
-export const SubmitButton = styled.button`
-  width: 179px;
-  height: 52px;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
-  background-color: ${(props) => props.isActive === true ? 'yellow' : 'none'};
-  
-  :hover {
-    cursor: ${(props) => props.isActive === true ? 'pointer' : 'default'};
-  }
-`;
 
 export const Error = styled.div`
   padding-top: 10px;
   font-size: 14px;
   color: red;
+`;
+
+//css 를 위한 styles
+
+import styled from "@emotion/styled";
+
+export const MyButton = styled.button`
+  background-color: ${(props) => (props.zzz === true ? "yellow" : "gray")};
+  //함수가 없어서 함수를 만들어버림
+
+  //true 면 버튼이 빨간색
+  //false 면 버튼이 노란색
+`;
+
+export const Title = styled.h1`
+  color: ${(props) => (props.qqq === true ? "red" : "yellow")};
 `;

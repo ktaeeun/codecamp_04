@@ -23,6 +23,8 @@ import {
     Error
 } from "./BoardWrite.styles";
 
+
+
 export default function BoardWriteUI(props){
     return (
         <Wrapper>

@@ -1,85 +1,101 @@
 import {
-    Avatar,
-    AvatarWrapper,
-    Body,
-    Button,
-    Contents,
-    CreatedAt,
-    BottomWrapper,
-    Header,
-    Info,
-    Title,
     Wrapper,
-    Writer,
-    CardWrapper,
+    ProfileWrapper,
+    ProfileInfo,
+    Photo,
+    Profile,
+    Name,
+    Date,
+    Info,
+    Line,
+    Link,
+    Map,
+    TitleWrapper,
+    Title,
+    ImageWrapper,
+    Image,
+    ContentsWrapper,
+    Contents,
+    YoutubeWrapper,
     Youtube,
     LikeWrapper,
-    IconWrapper,
-    LikeIcon,
+    Like,
+    LikePhoto,
     LikeCount,
-    DislikeIcon,
+    Dislike,
+    DislikePhoto,
     DislikeCount,
-    LinkIcon,
-    LocationIcon,
-    Image,
-    ImageWrapper,
-  } from "./BoardDetail.styles";
-  import { Tooltip } from "antd";
+    BoardsWrapper,
+    ButtonWrapper,
+    ChangeButton,
+  } from "./Detail.styles";
   
-  export default function BoardDetailUI(props) {
+  export default function DetailUI(props) {
     return (
       <Wrapper>
-        <CardWrapper>
-          <Header>
-            <AvatarWrapper>
-              <Avatar src="/images/avatar.png" />
-              <Info>
-                <Writer>{props.data?.fetchBoard.writer}</Writer>
-                <CreatedAt>{props.data?.fetchBoard.createdAt}</CreatedAt>
-              </Info>
-            </AvatarWrapper>
-            <IconWrapper>
-              <LinkIcon src="/images/board/detail/link.png" />
-              <Tooltip
-                placement="topRight"
-                title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
-              >
-                <LocationIcon src="/images/board/detail/location.png" />
-              </Tooltip>
-            </IconWrapper>
-          </Header>
-          <Body>
+       <BoardsWrapper>
+        <ProfileWrapper>
+          <ProfileInfo>
+            <Photo>
+              <img src="/images/photo.png" />{" "}
+              {/*  img에도 상수이름을 지을 수 있다.  ex ) <Photo =img src="/images/photo.png" />  */}
+            </Photo>
+            <Profile>
+              <Name>{props.data?.fetchBoard.writer}</Name>
+              <Date>Date : 2021.02.18</Date>
+            </Profile>
+          </ProfileInfo>
+          <Info>
+            <Link>
+              <img src="/images/link.png" />
+            </Link>
+            <Map>
+              <img src="/images/map2.png" />
+            </Map>
+          </Info>
+        </ProfileWrapper>
+        <Line>
+          <hr />
+        </Line>
+        <ImageWrapper>
+          <TitleWrapper>
             <Title>{props.data?.fetchBoard.title}</Title>
-            <ImageWrapper>
-              {props.data?.fetchBoard.images // ["고양이이미지.png", "강아지이미지.png"]     ""  " "
-                ?.filter((el: string) => el) // ["고양이이미지.png", "강아지이미지.png"]
-                .map((el: string) => (
-                  <Image key={el} src={`https://storage.googleapis.com/${el}`} />
-                ))}
-            </ImageWrapper>
-            <Contents>{props.data?.fetchBoard.contents}</Contents>
-            <Youtube
-              url={props.data?.fetchBoard.youtubeUrl}
-              width="486px"
-              height="240px"
-            />
-            <LikeWrapper>
-              <IconWrapper>
-                <LikeIcon onClick={props.onClickLike} />
-                <LikeCount>{props.data?.fetchBoard.likeCount}</LikeCount>
-              </IconWrapper>
-              <IconWrapper>
-                <DislikeIcon onClick={props.onClickDislike} />
-                <DislikeCount>{props.data?.fetchBoard.dislikeCount}</DislikeCount>
-              </IconWrapper>
-            </LikeWrapper>
-          </Body>
-        </CardWrapper>
-        <BottomWrapper>
-          <Button onClick={props.onClickMoveToList}>목록으로</Button>
-          <Button onClick={props.onClickMoveToEdit}>수정하기</Button>
-          <Button onClick={props.onClickDelete}>삭제하기</Button>
-        </BottomWrapper>
+          </TitleWrapper>
+          <Image>
+            <img src="/images/party.png" />
+          </Image>
+        </ImageWrapper>
+        <ContentsWrapper>
+          <Contents>{props.data?.fetchBoard.contents}</Contents>
+        </ContentsWrapper>
+        <YoutubeWrapper>
+          <Youtube>
+            <img src="/images/youtube.png" />
+          </Youtube>
+        </YoutubeWrapper>
+        <LikeWrapper>
+          <Like>
+            <LikePhoto>
+              <img src="/images/like.png" />
+            </LikePhoto>
+            <LikeCount>1920</LikeCount>
+          </Like>
+          <Dislike>
+            <DislikePhoto>
+              <img src="/images/dislike.png" />
+            </DislikePhoto>
+            <DislikeCount>1920</DislikeCount>
+          </Dislike>
+        </LikeWrapper>
+      </BoardsWrapper>
+      <ButtonWrapper>
+        <ChangeButton>목록으로</ChangeButton>
+        <ChangeButton
+          id={props.data?.fetchBoard._id}
+          onClick={props.onClickDelete}>
+          삭제하기
+        </ChangeButton>
+      </ButtonWrapper>
       </Wrapper>
     );
   }

@@ -1,67 +1,24 @@
+import DetailUI from "./Detail.presenter";
+import { useQuery, useMutation } from "@apollo/client";
+import { FETCH_BOARD } from "./Detail.queries";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
-import BoardDetailUI from "./BoardDetail.presenter";
-import {
-  FETCH_BOARD,
-  DELETE_BOARD,
-  LIKE_BOARD,
-  DISLIKE_BOARD,
-} from "./BoardDetail.queries";
 
-export default function BoardDetail() {
-  const router = useRouter();
+export default function Detail() {
   const [deleteBoard] = useMutation(DELETE_BOARD);
-  const [likeBoard] = useMutation(LIKE_BOARD);
-  const [dislikeBoard] = useMutation(DISLIKE_BOARD);
+  const router = useRouter();
 
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
+    variables: {
+      boardId: router.query.number, //number는 폴더 변수 이름
+    },
   });
-
-  function onClickMoveToList() {
-    router.push("/boards");
-  }
-
-  function onClickMoveToEdit() {
-    router.push(`/boards/${router.query.boardId}/edit`);
-  }
-
-  async function onClickDelete() {
-    try {
-      await deleteBoard({ variables: { boardId: router.query.boardId } });
-      alert("게시물이 삭제되었습니다.");
-      router.push("/boards");
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  function onClickLike() {
-    likeBoard({
-      variables: { boardId: router.query.boardId },
-      refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
-      ],
+  async function onClickDelete(event) {
+    await deleteBoard({
+      variables: { boardId: event.target.id },
+      refetchQueries: [{ query: FETCH_BOARD }],
     });
   }
 
-  function onClickDislike() {
-    dislikeBoard({
-      variables: { boardId: router.query.boardId },
-      refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
-      ],
-    });
-  }
-
-  return (
-    <BoardDetailUI
-      data={data}
-      onClickMoveToList={onClickMoveToList}
-      onClickMoveToEdit={onClickMoveToEdit}
-      onClickDelete={onClickDelete}
-      onClickLike={onClickLike}
-      onClickDislike={onClickDislike}
-    />
-  );
+  return <DetailUI router={router} data={data} onClickDelete={onClickDelete} />;
+  
 }

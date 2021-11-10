@@ -1,9 +1,11 @@
-import { gql } from '@apollo/client'
+// query를 위한 페이지
+import { gql } from "@apollo/client";
 
 export const CREATE_BOARD = gql`
-  mutation createBoard($createBoardInput: CreateBoardInput!) {
-    createBoard(createBoardInput: $createBoardInput) {
-      _id
+  mutation createBoard($writer: String, $title: String, $contents: String) {
+    createBoard(writer: $writer, title: $title, contents: $contents) {
+      number
+      message
     }
   }
 `;
