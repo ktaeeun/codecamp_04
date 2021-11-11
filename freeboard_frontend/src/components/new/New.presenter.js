@@ -22,7 +22,7 @@ import {
     CancelButton,
     SubmitButton,
     Error,
-  } from "./New.styels";
+  } from "./New.styles";
   
   export default function NewWriteUI(props) {
     return (
@@ -111,7 +111,7 @@ import {
           </SubmitButton>
         )}
 
-        {props.isEdit && (<SubmitButton color={props.color} onClick={props.onClickMoveToEdit} disabled={!props.color}>
+        {props.isEdit && (<SubmitButton color={props.color} onClick={props.onClickEdit} disabled={!props.color}>
             수정하기
           </SubmitButton>
         )}

@@ -122,7 +122,7 @@ export default function NewWrite(props) {
     }
   }
 
-  async function onClickMoveToEdit() {
+  async function onClickEdit() {
     try {
       await updateBoard({
         variables: {
@@ -153,7 +153,7 @@ export default function NewWrite(props) {
       onClickCorrect={onClickCorrect}
       color={color}
       isEdit={props.isEdit}
-      onClickMoveToEdit={onClickMoveToEdit}
+      onClickEdit={onClickEdit}
     />
   );
 }

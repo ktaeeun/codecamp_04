@@ -1,5 +1,6 @@
-import NewWrite from "../../../src/components/new/New.container";
+import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.container";
 
-export default function NewEditPage() {
-  return <NewWrite isEdit={true} />;
+
+export default function BoardDetailPage() {
+  return <BoardDetail />
 }

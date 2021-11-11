@@ -274,6 +274,7 @@ export const WrapperFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 `;
 export const PageNumber = styled.div`
   width: 120px;

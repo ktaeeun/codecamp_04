@@ -12,6 +12,12 @@ export default function Detail() {
       boardId: router.query.number, //number는 폴더 변수 이름
     },
   });
+
+  function onClickList() {
+    router.push(`/boards/list/`);
+  }
+
+
   async function onClickDelete(event) {
     await deleteBoard({
       variables: { boardId: event.target.id },
@@ -19,7 +25,7 @@ export default function Detail() {
     });
   }
 
-  async function onClickEdit() {
+  async function onClickMoveToEdit() {
     router.push(`${router.query.number}/edit`);
   }
 
@@ -29,7 +35,7 @@ export default function Detail() {
       data={data}
       onClickList={onClickList}
       onClickDelete={onClickDelete}
-      onClickEdit={onClickEdit}
+      onClickMoveToEdit={onClickMoveToEdit}
     />
   );
   
