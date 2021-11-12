@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { IStylesProps } from "./New.types";
+
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -144,7 +146,7 @@ export const SubmitButton = styled.button`
   height: 52px;
   background: #ffd600;
   border: none;
-  cursor: ${(props) => (props.color === true ? "pointer" : "default")};
+  cursor: ${(props: IStylesProps) => (props.color === true ? "pointer" : "default")};
   background-color: ${(props) =>
     props.color === true ? "yellow" : "gray"}; //함수를 받을수없어서 만들어줌
 `;
@@ -153,3 +155,4 @@ export const Error = styled.div`
   margin-top: 10px;
   color: red;
 `;
+

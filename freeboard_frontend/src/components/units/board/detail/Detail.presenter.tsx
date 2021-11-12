@@ -99,9 +99,7 @@ import {
         </DeleteButton>
         <EditButton onClick={props.onClickMoveToEdit}>수정하기</EditButton>
       </ButtonWrapper>
-      <CommentsWrapper>
-        
-      </CommentsWrapper>
+      <BottomLine></BottomLine>
       </Wrapper>
     );
   }

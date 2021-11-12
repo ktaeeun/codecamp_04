@@ -38,7 +38,9 @@ import {
     RegisterBoardButton,
   } from "./List.styles";
   
-  export default function ListUI(props) {
+import { IListUIProps } from "./List.types";
+
+  export default function ListUI(props: IListUIProps) {
     return (
       <Wrapper>
         <WrapperHeader>
@@ -161,7 +163,7 @@ import {
               <ListName>작성자</ListName>
               <ListName>날짜</ListName>
             </ListNameList>
-            {props.data?.fetchBoards.map((el, index) => (
+            {props.data?.fetchBoards.map((el: any, index: any) => (
               <Row key={el._id}>
                 <Column>{10 - index}</Column>
                 <Column>{el.title}</Column>

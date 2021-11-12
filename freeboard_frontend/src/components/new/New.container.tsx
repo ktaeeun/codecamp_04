@@ -1,13 +1,18 @@
 import NewWriteUI from "./New.presenter";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { CREATE_BOARD, UPDATE_BOARD } from "./New.queries";
+import { ChangeEvent, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./New.queries";
+import { INewProps } from "./New.types";
 
-export default function NewWrite(props) {
+export default function NewWrite(props: INewProps) {
   const router = useRouter();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const { data } = useQuery(FETCH_BOARD, {
+    variables: { boardId: router.query.number },
+  });
+
 
   // 빈칸 에러 useState
   const [writerError, setWriterError] = useState("");
@@ -22,11 +27,11 @@ export default function NewWrite(props) {
   const [myTitle, setTitle] = useState("");
   const [myContents, setContents] = useState("");
 
-  const [color, setColor] = useState(false);
+  const [color, setColor] = useState<boolean>(false);
   // 색 바꾸기 함수
 
   // 빈칸 에러 메시지 함수
-  function onChangeWriter(event) {
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
     if (
       event.target.value !== "" &&
@@ -41,7 +46,7 @@ export default function NewWrite(props) {
     }
   }
 
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
     if (
       myWriter !== "" &&
@@ -56,7 +61,7 @@ export default function NewWrite(props) {
     }
   }
 
-  function onChangeTitle(event) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
     if (
       myWriter !== "" &&
@@ -71,7 +76,7 @@ export default function NewWrite(props) {
     }
   }
 
-  function onChangeContents(event) {
+  function onChangeContents(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value);
     if (
       myWriter !== "" &&
@@ -114,11 +119,11 @@ export default function NewWrite(props) {
           },
         },
       });
-      console.log(result.data.createBoard._id);
+      alert("게시물을 등록합니다~");
       // router.push("/boards/detail/" + result.data.createBoard._id); // 옛날방식
       router.push(`/boards/detail/${result.data.createBoard._id}`);
     } catch (error) {
-      console.log(error);
+      // console.log(error.message);
     }
   }
 
@@ -134,9 +139,10 @@ export default function NewWrite(props) {
           boardId: router.query.number,
         },
       });
+      alert("게시물을 수정합니다~");
       router.push(`/boards/detail/${router.query.number}/`);
     } catch (error) {
-      console.log(error);
+      // console.log(error.message);
     }
   }
 
@@ -154,6 +160,7 @@ export default function NewWrite(props) {
       color={color}
       isEdit={props.isEdit}
       onClickEdit={onClickEdit}
+      data={data}
     />
   );
 }

@@ -23,9 +23,23 @@ import {
     Error
 } from "./BoardWrite.styles";
 
+export interface IBoardWriteUI{
+    onChangeMyWriter: any
+    myWriterError: any
+    onChangeMyPassword: any
+    myPasswordError: any
+    onChangeMyTitle: any
+    myTitleError: any
+    onChangeMyContents: any
+    myContentsError: any
+    onClickSubmit: any
+    isActive: any
 
 
-export default function BoardWriteUI(props){
+}
+
+
+export default function BoardWriteUI(props: IBoardWriteUI){
     return (
         <Wrapper>
             <Title>게시판 등록</Title>
@@ -87,13 +101,7 @@ export default function BoardWriteUI(props){
                 <RadioLabel htmlFor="image">사진</RadioLabel>
             </OptionWrapper>
             <ButtonWrapper>
-                <SubmitButton 
-                    onClick={props.onClickSubmit} 
-                    disabled={!props.isActive}
-                    isActive={props.isActive}
-                >
-                    등록하기
-                </SubmitButton>
+                <SubmitButton onClick={props.onClickSubmit} disabled={!props.isActive} isActive={props.isActive}>등록하기</SubmitButton>
             </ButtonWrapper>
         </Wrapper>
     )

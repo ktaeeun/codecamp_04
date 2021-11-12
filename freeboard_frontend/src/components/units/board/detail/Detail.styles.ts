@@ -252,3 +252,9 @@ export const EditButton = styled.button`
   cursor: pointer;
   
   `;
+  export const BottomLine = styled.hr`
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+
+  margin-top: 87px;
+`;

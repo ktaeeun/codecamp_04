@@ -24,7 +24,9 @@ import {
     Error,
   } from "./New.styles";
   
-  export default function NewWriteUI(props) {
+  import { INewWriteProps } from "./New.types";
+  
+  export default function NewWriteUI(props: INewWriteProps) {
     return (
       <Wrapper>
          <Title>{props.isEdit ? "게시물 수정" : "게시물 등록"}</Title>
@@ -36,6 +38,7 @@ import {
               type="text"
               placeholder="이름을 적어주세요."
               onChange={props.onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
             />
             <Error>{props.writerError}</Error>
           </TextWrapper>
@@ -57,6 +60,7 @@ import {
             type="text"
             placeholder="제목을 작성해주세요."
             onChange={props.onChangeTitle}
+            defaultValue={props.data?.fetchBoard.title}
           />
           <Error>{props.titleError}</Error>
         </TextWrapper>
@@ -66,6 +70,7 @@ import {
             name="contents"
             placeholder="내용을 작성해주세요."
             onChange={props.onChangeContents}
+            defaultValue={props.data?.fetchBoard.contents}
           />
           <Error>{props.contentsError}</Error>
         </TextWrapper>
