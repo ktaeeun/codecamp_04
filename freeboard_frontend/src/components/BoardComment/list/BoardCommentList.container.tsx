@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
-} from "../../../commons/libraries/types/generated/types";
+} from "../../../commons/types/generated/types";
 import BoardCommentListUI from "./BoardCommentList.presenter";
 import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries";
 

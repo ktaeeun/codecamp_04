@@ -1,6 +1,5 @@
 import DaumPostcode from "react-daum-postcode";
 import { useState } from "react";
-import { useState } from "react";
 import { Modal, Button } from "antd";
 import { myAddress, setMyAdreess } = useState("");
 import { myZoneCode, setMyZoneCode } = useState("");

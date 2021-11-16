@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
-import { IBoardComment } from "../../../commons/libraries/types/generated/types";
+import { IBoardComment } from "../../../commons/types/generated/types";
 
 export interface IBoardCommentWriteProps {
   isEdit?: boolean;

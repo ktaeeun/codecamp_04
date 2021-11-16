@@ -1,30 +1,40 @@
 import { useRouter } from "next/router";
 import BoardDetailUI from "./BoardDetail.presenter";
 import { useQuery, useMutation } from "@apollo/client";
-
 import {
   FETCH_BOARD,
   DELETE_BOARD,
   LIKE_BOARD,
   DISLIKE_BOARD,
 } from "./BoardDetail.queries";
+import {
+  IMutation,
+  IMutationDeleteBoardArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../commons/types/generated/types";
+
 export default function BoardDetail() {
   const router = useRouter();
-  const [deleteBoard] = useMutation(DELETE_BOARD);
-  const [likeBoard] = useMutation(LIKE_BOARD);
-  const [dislikeBoard] = useMutation(DISLIKE_BOARD);
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
+  const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+  >(LIKE_BOARD);
+  const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
 
-  const { data } = useQuery(FETCH_BOARD, {
-    // variables: {
-    //   boardId: event.target.id,
-    // },
-    // refetchQueries: [
-    //   {
-    //     query: FETCH_BOARD,
-    //     variables: { boardId: router.query.number },
-    //   },
-    // ],
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    { variables: { boardId: String(router.query.boardId) } }
+  );
 
   function onClickMoveToList() {
     router.push("/boards");
@@ -36,7 +46,9 @@ export default function BoardDetail() {
 
   async function onClickDelete() {
     try {
-      await deleteBoard({ variables: { boardId: router.query.boardId } });
+      await deleteBoard({
+        variables: { boardId: String(router.query.boardId) },
+      });
       alert("게시물이 삭제되었습니다.");
       router.push("/boards");
     } catch (error) {
@@ -44,34 +56,22 @@ export default function BoardDetail() {
     }
   }
 
-  async function onClickLike(event: any) {
-    await likeBoard({
-      variables: {
-        boardId: event.target.id,
-      },
+  function onClickLike() {
+    likeBoard({
+      variables: { boardId: String(router.query.boardId) },
       refetchQueries: [
-        {
-          query: FETCH_BOARD,
-          variables: { boardId: router.query.number },
-        },
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],
     });
-    alert("좋아요");
   }
 
-  async function onClickDislike(event: any) {
-    await dislikeBoard({
-      variables: {
-        boardId: event.target.id,
-      },
+  function onClickDislike() {
+    dislikeBoard({
+      variables: { boardId: String(router.query.boardId) },
       refetchQueries: [
-        {
-          query: FETCH_BOARD,
-          variables: { boardId: router.query.number },
-        },
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],
     });
-    alert("싫어요");
   }
 
   return (

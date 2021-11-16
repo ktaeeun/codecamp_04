@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import {
   IMutation,
   IMutationDeleteBoardCommentArgs,
-} from "../../../commons/libraries/types/generated/types";
+} from "../../../commons/types/generated/types";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
 import {
   DELETE_BOARD_COMMENT,

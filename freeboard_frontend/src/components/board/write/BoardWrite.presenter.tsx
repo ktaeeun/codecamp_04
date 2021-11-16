@@ -1,3 +1,4 @@
+import DaumPostcode from "react-daum-postcode";
 import {
   Address,
   ButtonWrapper,
@@ -22,9 +23,24 @@ import {
   UploadButton,
   Error,
 } from "./BoardWrite.styles";
-import { IBoardWriteProps } from "./BoardWrite.types";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
+import { useState } from "react";
+import { Modal, Button } from "antd";
 
-export default function BoardWriteUI(props: any) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
+
+  const [myZoneCode, setMyZoneCode] = useState("");
+  const onToggleModal = () => {
+    setIsOpen((prev) => prev);
+  };
+  const handleComplete = (data: any) => {
+    setMyAddress(data.address);
+    setMyZoneCode(data.zonecode);
+    setIsOpen(false);
+  };
+
   return (
     <Wrapper>
       <Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</Title>
@@ -68,7 +84,14 @@ export default function BoardWriteUI(props: any) {
         <Label>주소</Label>
         <ZipcodeWrapper>
           <Zipcode placeholder="07250" readOnly />
-          <SearchButton>우편번호 검색</SearchButton>
+          <Button onClick={onToggleModal}>우편번호 검색</Button>
+          <div>{myZoneCode}</div>
+          <div>{myAddress}</div>
+          {isOpen && (
+            <Modal visible={true} onOk={onToggleModal} onCancel={onToggleModal}>
+              <DaumPostcode onComplete={handleComplete} />;
+            </Modal>
+          )}
         </ZipcodeWrapper>
         <Address readOnly />
         <Address />
