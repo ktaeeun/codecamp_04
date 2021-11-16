@@ -8,6 +8,7 @@ export interface IBoardWriteProps {
 export interface IMyUpdateBoardInput {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
 }
 
 export interface IBoardWriteUIProps {
@@ -19,6 +20,7 @@ export interface IBoardWriteUIProps {
   onChangeMyPassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeMyYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   isActive: boolean;

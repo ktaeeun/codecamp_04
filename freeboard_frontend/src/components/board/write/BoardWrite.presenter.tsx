@@ -22,9 +22,9 @@ import {
   UploadButton,
   Error,
 } from "./BoardWrite.styles";
-import { IBoardWriteUIProps } from "./BoardWrite.types";
+import { IBoardWriteProps } from "./BoardWrite.types";
 
-export default function BoardWriteUI(props: IBoardWriteUIProps) {
+export default function BoardWriteUI(props: any) {
   return (
     <Wrapper>
       <Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</Title>
@@ -75,7 +75,11 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </InputWrapper>
       <InputWrapper>
         <Label>유튜브</Label>
-        <Youtube placeholder="링크를 복사해주세요." />
+        <Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeMyYoutubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl}
+        />
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>

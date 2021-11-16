@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -81,3 +82,15 @@ export const Button = styled.button`
     border-color: white;
   }
 `;
+export const Youtube = styled(ReactPlayer)``;
+export const LikeWrapper = styled.div`
+  width: 120px;
+  flex-direction: column;
+  align-items: center;
+`;
+export const DislikePhoto = styled.img`
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+`;
+export const Youtube = styled(ReactPlayer)``;
