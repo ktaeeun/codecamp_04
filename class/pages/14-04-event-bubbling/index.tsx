@@ -21,7 +21,7 @@ export default function PaginationBasicPage() {
     }
   );
 
-  function onClickRow(event) {
+  function onClickRow(event: any) {
     // console.log(event.target.id);
     console.log(event.currentTarget.id);
   }
