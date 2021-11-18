@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import "antd/dist/antd.css";
-import Layout from "../src/components/comoons/layout";
+import Layout from "../src/components/commons/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({

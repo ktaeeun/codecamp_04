@@ -15,6 +15,7 @@ export const InnerWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-family: "Gaegu-bold.ttf";
   font-size: 18px;
 `;
 
