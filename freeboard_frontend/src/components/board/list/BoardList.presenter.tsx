@@ -12,8 +12,10 @@ import {
   PencilIcon,
   Button,
 } from "./BoardList.styles";
+import Paginations01 from "../../commons/pagination/01/Pagination.container";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props: any) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <Wrapper>
       <TableTop />
@@ -23,7 +25,7 @@ export default function BoardListUI(props: any) {
         <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
         <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
       </Row>
-      {props.data?.fetchBoards.map((el: any, index: any) => (
+      {props.data?.fetchBoards.map((el, index) => (
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
           <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
@@ -35,6 +37,12 @@ export default function BoardListUI(props: any) {
       ))}
       <TableBottom />
       <Footer>
+        <Paginations01
+          refetch={props.refetch}
+          count={props.count}
+          startPage={props.startPage}
+          setStartPage={props.setStartPage}
+        />
         <Button onClick={props.onClickMoveToBoardNew}>
           <PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기

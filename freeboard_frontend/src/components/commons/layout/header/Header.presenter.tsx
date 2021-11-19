@@ -8,7 +8,7 @@ export default function LayoutHeaderUI(props: IProps) {
   return (
     <Wrapper>
       <InnerWrapper>
-        <InnerLogo onClick={props.onClickLogo}>여천냥</InnerLogo>
+        <InnerLogo onClick={props.onClickLogo}>여기가 천국이냥</InnerLogo>
         <div>
           <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
           <InnerButton>회원가입</InnerButton>

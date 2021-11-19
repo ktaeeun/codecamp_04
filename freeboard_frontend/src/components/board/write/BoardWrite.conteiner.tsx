@@ -1,5 +1,5 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -24,6 +24,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -132,88 +133,103 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setMyContentsError("내용을 입력해주세요.");
     }
     if (myWriter && myPassword && myTitle && myContents) {
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            writer: myWriter,
-            password: myPassword,
-            title: myTitle,
-            contents: myContents,
-            youtubeUrl: youtubeUrl,
-            boardAddress: {
-              zipcode: zipcode,
-              address: address,
-              addressDetail: addressDetail,
+      try {
+        const uploadFiles = files.map((el) =>
+          el ? uploadFile({ variables: { file: el } }) : null
+        ); // [ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ]
+        const results = await Promise.all(uploadFiles); // await Promise.all([ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ])
+        const myImages = results.map((el) => el?.data.uploadFile.url || "");
+
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              writer: myWriter,
+              password: myPassword,
+              title: myTitle,
+              contents: myContents,
+              youtubeUrl: youtubeUrl,
+              boardAddress: {
+                zipcode: zipcode,
+                address: address,
+                addressDetail: addressDetail,
+              },
             },
           },
-        },
-      });
-      router.push(`/boards/${result.data.createBoard._id}`);
+        });
+        router.push(`/boards/${result.data.createBoard._id}`);
+      } catch (error) {
+        console.log(error);
+      }
     }
+
+    async function onClickUpdate() {
+      if (
+        !myTitle &&
+        !myContents &&
+        !youtubeUrl &&
+        !address &&
+        !addressDetail &&
+        !zipcode
+      ) {
+        alert("수정된 내용이 없습니다.");
+        return;
+      }
+
+      const myUpdateboardInput: IMyUpdateBoardInput = {};
+      if (myTitle) myUpdateboardInput.title = myTitle;
+      if (myContents) myUpdateboardInput.contents = myContents;
+      if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+      if (zipcode || address || addressDetail) {
+        myUpdateboardInput.boardAddress = {};
+        if (zipcode) myUpdateboardInput.boardAddress.zipcode = zipcode;
+        if (address) myUpdateboardInput.boardAddress.address = address;
+        if (addressDetail)
+          myUpdateboardInput.boardAddress.addressDetail = addressDetail;
+      }
+
+      try {
+        await updateBoard({
+          variables: {
+            boardId: router.query.boardId,
+            password: myPassword,
+            updateBoardInput: myUpdateboardInput,
+          },
+        });
+        router.push(`/boards/${router.query.boardId}`);
+      } catch (error) {
+        if (error instanceof Error) alert(error.message);
+      }
+    }
+    function onChangeFiles(file: File, index: number) {
+      const newFiles = [...files];
+      newFiles[index] = file;
+      setFiles(newFiles);
+    }
+    return (
+      <BoardWriteUI
+        myWriterError={myWriterError}
+        myPasswordError={myPasswordError}
+        myTitleError={myTitleError}
+        myContentsError={myContentsError}
+        onChangeMyWriter={onChangeMyWriter}
+        onChangeMyPassword={onChangeMyPassword}
+        onChangeMyTitle={onChangeMyTitle}
+        onChangeMyContents={onChangeMyContents}
+        onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
+        onChangeAddressDetail={onChangeAddressDetail}
+        onClickSubmit={onClickSubmit}
+        onClickUpdate={onClickUpdate}
+        onClickAddressSearch={onClickAddressSearch}
+        onCompleteAddressSearch={onCompleteAddressSearch}
+        isActive={isActive}
+        isEdit={props.isEdit}
+        isOpen={isOpen}
+        data={props.data}
+        zipcode={zipcode}
+        address={address}
+        addressDetail={addressDetail}
+        onChangeFiles={onChangeFiles}
+      />
+    );
   }
-
-  async function onClickUpdate() {
-    if (
-      !myTitle &&
-      !myContents &&
-      !youtubeUrl &&
-      !address &&
-      !addressDetail &&
-      !zipcode
-    ) {
-      alert("수정된 내용이 없습니다.");
-      return;
-    }
-
-    const myUpdateboardInput: IMyUpdateBoardInput = {};
-    if (myTitle) myUpdateboardInput.title = myTitle;
-    if (myContents) myUpdateboardInput.contents = myContents;
-    if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
-    if (zipcode || address || addressDetail) {
-      myUpdateboardInput.boardAddress = {};
-      if (zipcode) myUpdateboardInput.boardAddress.zipcode = zipcode;
-      if (address) myUpdateboardInput.boardAddress.address = address;
-      if (addressDetail)
-        myUpdateboardInput.boardAddress.addressDetail = addressDetail;
-    }
-
-    try {
-      await updateBoard({
-        variables: {
-          boardId: router.query.boardId,
-          password: myPassword,
-          updateBoardInput: myUpdateboardInput,
-        },
-      });
-      router.push(`/boards/${router.query.boardId}`);
-    } catch (error) {
-      if (error instanceof Error) alert(error.message);
-    }
-  }
-
-  return (
-    <BoardWriteUI
-      myWriterError={myWriterError}
-      myPasswordError={myPasswordError}
-      myTitleError={myTitleError}
-      myContentsError={myContentsError}
-      onChangeMyWriter={onChangeMyWriter}
-      onChangeMyPassword={onChangeMyPassword}
-      onChangeMyTitle={onChangeMyTitle}
-      onChangeMyContents={onChangeMyContents}
-      onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
-      onChangeAddressDetail={onChangeAddressDetail}
-      onClickSubmit={onClickSubmit}
-      onClickUpdate={onClickUpdate}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
-      isActive={isActive}
-      isEdit={props.isEdit}
-      isOpen={isOpen}
-      data={props.data}
-      zipcode={zipcode}
-      address={address}
-      addressDetail={addressDetail}
-    />
-  );
 }

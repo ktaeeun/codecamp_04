@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   height: 64px;
-  background-color: violet;
+  background-color: #ffa07a;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -16,6 +16,6 @@ export const MenuItem = styled.div`
   cursor: pointer;
 
   :hover {
-    color: orange;
+    color: #ff4500;
   }
 `;

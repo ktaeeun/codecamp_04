@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  height: 152px;
-  background-color: #f5f2fc;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -20,7 +19,7 @@ export const InnerWrapper = styled.div`
 `;
 
 export const InnerLogo = styled.div`
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   font-family: "live";
   font-style: italic;
