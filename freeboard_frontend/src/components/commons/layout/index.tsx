@@ -8,7 +8,9 @@ import { useRouter } from "next/router";
 
 const Wrapper = styled.div``;
 
-const Body = styled.div``;
+const Body = styled.div`
+  margin-left: 160px;
+`;
 
 const BodyWrapper = styled.div`
   display: flex;

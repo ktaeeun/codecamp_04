@@ -24,6 +24,7 @@ import {
   Star,
   UpdateIcon,
   Writer,
+  PasswordInput,
 } from "./BoardCommentList.styles";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
@@ -32,6 +33,9 @@ export default function BoardCommentListUIItem(
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [myPassword, setMyPassword] = useState("");
+
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
     IMutationDeleteBoardCommentArgs
@@ -42,7 +46,6 @@ export default function BoardCommentListUIItem(
   }
 
   async function onClickDelete() {
-    const myPassword = prompt("비밀번호를 입력하세요.");
     try {
       await deleteBoardComment({
         variables: {
@@ -57,12 +60,26 @@ export default function BoardCommentListUIItem(
         ],
       });
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      Modal.error({ content: error.message });
     }
+  }
+
+  function onClickOpenDeleteModal() {
+    setIsOpenDeleteModal(true);
+  }
+
+  function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>) {
+    setMyPassword(event.target.value);
   }
 
   return (
     <>
+      {isOpenDeleteModal && (
+        <Modal visible={true} onOk={onClickDelete}>
+          <div>비밀번호 입력: </div>
+          <PasswordInput type="password" onChange={onChangeDeletePassword} />
+        </Modal>
+      )}
       {!isEdit && (
         <ItemWrapper>
           <FlexWrapper>
@@ -81,7 +98,7 @@ export default function BoardCommentListUIItem(
               />
               <DeleteIcon
                 src="/images/boardComment/list/option_delete_icon.png/"
-                onClick={onClickDelete}
+                onClick={onClickOpenDeleteModal}
               />
             </OptionWrapper>
           </FlexWrapper>

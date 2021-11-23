@@ -5,7 +5,7 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
   return (
     <Wrapper>
       <MenuItem id="/openapis" onClick={props.onClickMenu}>
-        주인님 라이브📺
+        랜덤 사진전📺
       </MenuItem>
       <>|</>
       <MenuItem id="/boards" onClick={props.onClickMenu}>

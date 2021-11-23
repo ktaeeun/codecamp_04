@@ -11,6 +11,22 @@ import {
   Footer,
   PencilIcon,
   Button,
+  BestBoardContents,
+  BestBoardBox,
+  BestPhoto1,
+  BestText,
+  BestTitle,
+  BestContents,
+  BestProfile,
+  BestDate,
+  BestLike,
+  BestName,
+  ProfilePhoto,
+  ProfileName,
+  LikeCount,
+  LikePhoto,
+  TitleWrapper,
+  BestBoardTitle,
 } from "./BoardList.styles";
 import Paginations01 from "../../commons/pagination/01/Pagination.container";
 import { IBoardListUIProps } from "./BoardList.types";
@@ -19,6 +35,44 @@ export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <Wrapper>
       <TableTop />
+      <TitleWrapper>
+        <BestBoardTitle>주인님을 자랑해주세요!</BestBoardTitle>
+      </TitleWrapper>
+
+      <BestBoardContents>
+        {props.dataBoardsOfTheBest?.fetchBoardsOfTheBest.map((el: any) => (
+          <BestBoardBox key={el._id} id={el._id} onClick={props.onClickBest}>
+            <BestPhoto1
+              src={
+                el.images[0]
+                  ? `https://storage.googleapis.com/${el.images[0]}`
+                  : "/images/noimage.jpg"
+              }
+            />
+            <BestText>
+              <BestTitle>{el.title}</BestTitle>
+              <BestContents>
+                <BestProfile>
+                  <BestName>
+                    <ProfilePhoto>
+                      <img src="/images/ddabong.png" />
+                    </ProfilePhoto>
+                    <ProfileName>{el.writer}</ProfileName>
+                  </BestName>
+                  <BestDate>{el.createdAt.slice(0, 10)}</BestDate>
+                </BestProfile>
+                <BestLike>
+                  <LikePhoto>
+                    <img src="/images/bestlike.png" />
+                  </LikePhoto>
+                  <LikeCount>{el.likeCount}</LikeCount>
+                </BestLike>
+              </BestContents>
+            </BestText>
+          </BestBoardBox>
+        ))}
+      </BestBoardContents>
+
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>
