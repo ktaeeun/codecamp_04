@@ -1,10 +1,15 @@
 import { Global } from "@emotion/react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  ApolloLink,
+} from "@apollo/client";
 import "antd/dist/antd.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalStyles";
-
+import { createUploadLink } from "apollo-upload-client";
 // 수업시작시 주석해제
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -45,11 +50,14 @@ export const firebaseApp = initializeApp(firebaseConfig);
 // export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const client = new ApolloClient({
+  const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
-    cache: new InMemoryCache(),
   });
 
+  const client = new ApolloClient({
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    cache: new InMemoryCache(),
+  });
   return (
     <ApolloProvider client={client}>
       <Global styles={globalStyles} />

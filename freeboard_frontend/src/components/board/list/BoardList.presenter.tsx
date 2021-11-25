@@ -40,7 +40,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
       </TitleWrapper>
 
       <BestBoardContents>
-        {props.dataBoardsOfTheBest?.fetchBoardsOfTheBest.map((el: any) => (
+        {props.dataBoardsOfTheBest?.fetchBoardsOfTheBest.map((el) => (
           <BestBoardBox key={el._id} id={el._id} onClick={props.onClickBest}>
             <BestPhoto1
               src={
@@ -49,6 +49,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
                   : "/images/noimage.jpg"
               }
             />
+
             <BestText>
               <BestTitle>{el.title}</BestTitle>
               <BestContents>

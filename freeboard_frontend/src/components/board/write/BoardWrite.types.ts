@@ -39,6 +39,7 @@ export interface IBoardWriteUIProps {
   zipcode: string;
   address: string;
   addressDetail: string;
+  onChangeFiles: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ISubmitButtonProps {

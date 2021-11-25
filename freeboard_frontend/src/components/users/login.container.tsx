@@ -6,7 +6,7 @@ import { LOGIN_USER } from "./login.queris";
 
 export default function Login() {
   const [loginUser] = useMutation(LOGIN_USER);
-  //   const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
 

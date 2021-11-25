@@ -16,10 +16,10 @@ export default function BannerUI() {
     <Wrapper>
       <Slider {...settings}>
         <div>
-          <SliderItem src="/images/layoutImage/nyang.png" />
+          <SliderItem src="/images/layoutImage/cat1.jpg" />
         </div>
         <div>
-          <SliderItem src="/images/layoutImage/nyang2.png" />
+          <SliderItem src="/images/layoutImage/cat2.jpg" />
         </div>
         <div>
           <SliderItem src="/images/layoutImage/nyang.png" />
