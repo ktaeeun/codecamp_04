@@ -3,6 +3,9 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
+import { createContext, useState, useEffect } from "react";
+
+export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
@@ -11,11 +14,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <>
+      <GlobalContext.Provider value={value}>
+        <ApolloProvider client={client}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </GlobalContext.Provider>
+    </>
   );
 }
 
