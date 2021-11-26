@@ -1,47 +1,45 @@
+import BoardWriteUI from "./BoardWrite.presenter";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
-import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
-import { IMyUpdateBoardInput } from "./BoardWrite.types";
+import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [myWriter, setMyWriter] = useState("");
+  const [myPassword, setMyPassword] = useState("");
+  const [myTitle, setMyTitle] = useState("");
+  const [myContents, setMyContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
-  // const [fileUrls, setFileUrls] = useState(["고양이이미지.png", "", "강아지이미지.png"]); // 이미지 1차 실습
-  const [files, setFiles] = useState<(File | null)[]>([null, null, null]); // 이미지 2차 실습
+  const [myWriterError, setMyWriterError] = useState("");
+  const [myPasswordError, setMyPasswordError] = useState("");
+  const [myTitleError, setMyTitleError] = useState("");
+  const [myContentsError, setMyContentsError] = useState("");
 
-  const [writerError, setWriterError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [contentsError, setContentsError] = useState("");
+  const [isActive, setIsActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
-  const [uploadFile] = useMutation(UPLOAD_FILE);
 
-  function onChangeWriter(event) {
-    setWriter(event.target.value);
+  function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
+    setMyWriter(event.target.value);
     if (event.target.value !== "") {
-      setWriterError("");
+      setMyWriterError("");
     }
 
     if (
       event.target.value !== "" &&
-      password !== "" &&
-      title !== "" &&
-      contents !== ""
+      myTitle !== "" &&
+      myContents !== "" &&
+      myPassword !== ""
     ) {
       setIsActive(true);
     } else {
@@ -49,52 +47,16 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangePassword(event) {
-    setPassword(event.target.value);
+  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
+    setMyPassword(event.target.value);
     if (event.target.value !== "") {
-      setPasswordError("");
+      setMyPasswordError("");
     }
 
     if (
-      writer !== "" &&
-      event.target.value !== "" &&
-      title !== "" &&
-      contents !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }
-
-  function onChangeTitle(event) {
-    setTitle(event.target.value);
-    if (event.target.value !== "") {
-      setTitleError("");
-    }
-
-    if (
-      writer !== "" &&
-      password !== "" &&
-      event.target.value !== "" &&
-      contents !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }
-
-  function onChangeContents(event) {
-    setContents(event.target.value);
-    if (event.target.value !== "") {
-      setContentsError("");
-    }
-
-    if (
-      writer !== "" &&
-      password !== "" &&
-      title !== "" &&
+      myWriter !== "" &&
+      myTitle !== "" &&
+      myContents !== "" &&
       event.target.value !== ""
     ) {
       setIsActive(true);
@@ -103,11 +65,47 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeYoutubeUrl(event) {
+  function onChangeMyTitle(event: ChangeEvent<HTMLInputElement>) {
+    setMyTitle(event.target.value);
+    if (event.target.value !== "") {
+      setMyTitleError("");
+    }
+
+    if (
+      myWriter !== "" &&
+      event.target.value !== "" &&
+      myContents !== "" &&
+      myPassword !== ""
+    ) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }
+
+  function onChangeMyContents(event: ChangeEvent<HTMLTextAreaElement>) {
+    setMyContents(event.target.value);
+    if (event.target.value !== "") {
+      setMyContentsError("");
+    }
+
+    if (
+      myWriter !== "" &&
+      myTitle !== "" &&
+      event.target.value !== "" &&
+      myPassword !== ""
+    ) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }
+
+  function onChangeMyYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
     setYoutubeUrl(event.target.value);
   }
 
-  function onChangeAddressDetail(event) {
+  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
     setAddressDetail(event.target.value);
   }
 
@@ -122,67 +120,56 @@ export default function BoardWrite(props) {
   }
 
   async function onClickSubmit() {
-    if (writer === "") {
-      setWriterError("작성자를 입력해주세요.");
+    if (!myWriter) {
+      setMyWriterError("작성자를 입력해주세요.");
     }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
+    if (!myPassword) {
+      setMyPasswordError("비밀번호를 입력해주세요.");
     }
-    if (title === "") {
-      setTitleError("제목을 입력해주세요.");
+    if (!myTitle) {
+      setMyTitleError("제목을 입력해주세요.");
     }
-    if (contents === "") {
-      setContentsError("내용을 입력해주세요.");
+    if (!myContents) {
+      setMyContentsError("내용을 입력해주세요.");
     }
-    if (writer !== "" && password !== "" && title !== "" && contents !== "") {
-      try {
-        ////////////////////////////////////////// 이미지 2차 실습 ///////////////////////////////////
-        const uploadFiles = files // [File1, File2, null]
-          .map((el) => (el ? uploadFile({ variables: { file: el } }) : null)); // [ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ]
-        const results = await Promise.all(uploadFiles); // await Promise.all([ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ])
-        const myImages = results.map((el) => el?.data.uploadFile.url || ""); // ["강아지이미지.png", "고양이이미지.png", ""]
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-        const result = await createBoard({
-          variables: {
-            createBoardInput: {
-              writer: writer,
-              password: password,
-              title: title,
-              contents: contents,
-              youtubeUrl: youtubeUrl,
-              boardAddress: {
-                zipcode: zipcode,
-                address: address,
-                addressDetail: addressDetail,
-              },
-              // images: [...fileUrls], // 이미지 1차 실습
-              images: myImages, // 이미지 2차 실습
+    if (myWriter && myPassword && myTitle && myContents) {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: myWriter,
+            password: myPassword,
+            title: myTitle,
+            contents: myContents,
+            youtubeUrl: youtubeUrl,
+            boardAddress: {
+              zipcode: zipcode,
+              address: address,
+              addressDetail: addressDetail,
             },
+            images: fileUrls,
           },
-        });
-        router.push(`/boards/${result.data.createBoard._id}`);
-      } catch (error) {
-        console.log(error);
-      }
+        },
+      });
+      router.push(`/boards/${result.data.createBoard._id}`);
     }
   }
 
   async function onClickUpdate() {
     if (
-      !title &&
-      false &&
+      !myTitle &&
+      !myContents &&
       !youtubeUrl &&
-      !zipcode &&
       !address &&
-      !addressDetail
+      !addressDetail &&
+      !zipcode
     ) {
       alert("수정된 내용이 없습니다.");
       return;
     }
-    const myUpdateboardInput: IMyUpdateBoardInput = {};
-    if (title) myUpdateboardInput.title = title;
-    if (contents) myUpdateboardInput.contents = contents;
+
+    const myUpdateboardInput: IMyUpdateBoardInput = { images: fileUrls };
+    if (myTitle) myUpdateboardInput.title = myTitle;
+    if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
     if (zipcode || address || addressDetail) {
       myUpdateboardInput.boardAddress = {};
@@ -192,89 +179,51 @@ export default function BoardWrite(props) {
         myUpdateboardInput.boardAddress.addressDetail = addressDetail;
     }
 
-    // 1. props.data?.fetchBoard.images // ["토끼이미지.png", "", "거북이이미지.png"]
-    // 2. files // [File1, File2, null] // File1: 강아지이미지파일, File2: 고양이이미지파일
-    ////////////////////////////////////////// 이미지 2차 실습 ///////////////////////////////////
-    const uploadFiles = files // [File1, File2, null]
-      .map((el) => (el ? uploadFile({ variables: { file: el } }) : null)); // [ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ]
-    const results = await Promise.all(uploadFiles); // await Promise.all([ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ])
-    const nextImages = results.map((el) => el?.data.uploadFile.url || ""); // ["강아지이미지.png", "고양이이미지.png", ""]
-    myUpdateboardInput.images = nextImages;
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    // 1. props.data?.fetchBoard.images // ["토끼이미지.png"  , "",              "거북이이미지.png"]
-    // 2. nextImages                    // ["강아지이미지.png",  "고양이이미지.png", ""             ]
-    // 3. myImages                      // ["강아지이미지.png",  "고양이이미지.png", "거북이이미지.png"]
-    ////////////////////////////////////////// 이미지 수정 ///////////////////////////////////
-    if (props.data?.fetchBoard.images?.length) {
-      const prevImages = [...props.data?.fetchBoard.images]; // ["토끼이미지.png", "", "거북이이미지.png"]
-      myUpdateboardInput.images = prevImages.map((el, index) => nextImages[index] || el); // prettier-ignore
-    } else {
-      myUpdateboardInput.images = nextImages;
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
     try {
-      const result = await updateBoard({
+      await updateBoard({
         variables: {
           boardId: router.query.boardId,
-          password: password,
+          password: myPassword,
           updateBoardInput: myUpdateboardInput,
         },
       });
-      router.push(`/boards/${result.data.updateBoard._id}`);
-    } catch (err) {
-      // console.log(err.message)
-      alert(err.message);
+      router.push(`/boards/${router.query.boardId}`);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   }
 
-  //////////////////// 이미지 1차 실습 /////////////////////////////////
-  // function onChangeFileUrls(fileUrl: string, index: number) {
-  //   const newFileUrls = [...fileUrls];    // ["고양이이미지.png", "", ""]
-  //   newFileUrls[index] = fileUrl          // ["고양이이미지.png", "", "강아지이미지.png"]
-  //   setFileUrls(newFileUrls);
-  // }
-  ///////////////////////////////////////////////////////////////////
-
-  //////////////////// 이미지 2차 실습 /////////////////////////////////
-  function onChangeFiles(file: File, index: number) {
-    const newFiles = [...files];
-    newFiles[index] = file;
-    setFiles(newFiles);
+  function onChangeFileUrls(fileUrl: string, index: number) {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   }
-  ///////////////////////////////////////////////////////////////////
 
   return (
     <BoardWriteUI
-      isActive={isActive}
-      isOpen={isOpen}
-      onChangeWriter={onChangeWriter}
-      onChangePassword={onChangePassword}
-      onChangeTitle={onChangeTitle}
-      onChangeContents={onChangeContents}
-      onChangeYoutubeUrl={onChangeYoutubeUrl}
+      myWriterError={myWriterError}
+      myPasswordError={myPasswordError}
+      myTitleError={myTitleError}
+      myContentsError={myContentsError}
+      onChangeMyWriter={onChangeMyWriter}
+      onChangeMyPassword={onChangeMyPassword}
+      onChangeMyTitle={onChangeMyTitle}
+      onChangeMyContents={onChangeMyContents}
+      onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
       onChangeAddressDetail={onChangeAddressDetail}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      writerError={writerError}
-      passwordError={passwordError}
-      titleError={titleError}
-      contentsError={contentsError}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
+      isActive={isActive}
       isEdit={props.isEdit}
+      isOpen={isOpen}
       data={props.data}
-      address={address}
       zipcode={zipcode}
-      //////////////////// 이미지 1차 실습 /////////////////////
-      // fileUrls={fileUrls}
-      // onChangeFileUrls={onChangeFileUrls}
-      //////////////////////////////////////////////////////
-
-      //////////////////// 이미지 2차 실습 ////////////////////
-      onChangeFiles={onChangeFiles}
-      /////////////////////////////////////////////////////
+      address={address}
+      addressDetail={addressDetail}
+      fileUrls={fileUrls}
     />
   );
 }

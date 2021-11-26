@@ -1,5 +1,4 @@
 import {
-  Error,
   Address,
   ButtonWrapper,
   Contents,
@@ -20,17 +19,20 @@ import {
   Youtube,
   Zipcode,
   ZipcodeWrapper,
+  UploadButton,
+  Error,
 } from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import Uploads01 from "../../commons/uploads/01/uploads01.container";
 
-export default function BoardWriteUI(props) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
       {props.isOpen && (
         <Modal visible={true}>
-          <DaumPostcode onComplete={props.onCompleteAddressSearch} autoClose />
+          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
         </Modal>
       )}
       <Wrapper>
@@ -39,56 +41,49 @@ export default function BoardWriteUI(props) {
           <InputWrapper>
             <Label>작성자</Label>
             <Writer
-              name="writer"
               type="text"
               placeholder="이름을 적어주세요."
-              onChange={props.onChangeWriter}
+              onChange={props.onChangeMyWriter}
               readOnly={Boolean(props.data?.fetchBoard.writer)}
-              defaultValue={props.data?.fetchBoard.writer}
+              defaultValue={props.data?.fetchBoard.writer || ""}
             />
-            <Error>{props.writerError}</Error>
+            <Error>{props.myWriterError}</Error>
           </InputWrapper>
           <InputWrapper>
             <Label>비밀번호</Label>
-            <Password
-              name="password"
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              onChange={props.onChangePassword}
-            />
-            <Error>{props.passwordError}</Error>
+            <Password type="password" onChange={props.onChangeMyPassword} />
+            <Error>{props.myPasswordError}</Error>
           </InputWrapper>
         </WriterWrapper>
         <InputWrapper>
           <Label>제목</Label>
           <Subject
-            name="title"
             type="text"
             placeholder="제목을 작성해주세요."
-            onChange={props.onChangeTitle}
+            onChange={props.onChangeMyTitle}
             defaultValue={props.data?.fetchBoard.title}
           />
-          <Error>{props.titleError}</Error>
+          <Error>{props.myTitleError}</Error>
         </InputWrapper>
         <InputWrapper>
           <Label>내용</Label>
           <Contents
-            name="contents"
             placeholder="내용을 작성해주세요."
-            onChange={props.onChangeContents}
+            onChange={props.onChangeMyContents}
             defaultValue={props.data?.fetchBoard.contents}
           />
-          <Error>{props.contentsError}</Error>
+          <Error>{props.myContentsError}</Error>
         </InputWrapper>
         <InputWrapper>
           <Label>주소</Label>
           <ZipcodeWrapper>
             <Zipcode
-              name="zipcode"
               placeholder="07250"
               readOnly
               value={
-                props.zipcode || props.data?.fetchBoard.boardAddress?.zipcode
+                props.zipcode ||
+                props.data?.fetchBoard.boardAddress?.zipcode ||
+                ""
               }
             />
             <SearchButton onClick={props.onClickAddressSearch}>
@@ -98,47 +93,36 @@ export default function BoardWriteUI(props) {
           <Address
             readOnly
             value={
-              props.address || props.data?.fetchBoard.boardAddress?.address
+              props.address ||
+              props.data?.fetchBoard.boardAddress?.address ||
+              ""
             }
           />
           <Address
             onChange={props.onChangeAddressDetail}
-            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+            defaultValue={
+              props.data?.fetchBoard.boardAddress?.addressDetail || ""
+            }
           />
         </InputWrapper>
         <InputWrapper>
           <Label>유튜브</Label>
           <Youtube
-            name="youtube"
             placeholder="링크를 복사해주세요."
-            onChange={props.onChangeYoutubeUrl}
-            defaultValue={props.data?.fetchBoard.youtubeUrl}
+            onChange={props.onChangeMyYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
           />
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          {/* 
-          ////////////// 1차 이미지 실습 ///////////////////////////
-          {props.fileUrls.filter((el) => el).map((el, index) => (
+          {props.fileUrls.map((el, index) => (
             <Uploads01
-              key={`${el}_${index}`}
+              key={index}
               index={index}
               fileUrl={el}
               onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
-          /////////////////////////////////////////////////////// 
-          */}
-          {/* ////////////// 2차 이미지 실습 /////////////////////////// */}
-          {new Array(3).fill(1).map((el, index) => (
-            <Uploads01
-              key={`${el}_${index}`}
-              index={index}
-              onChangeFiles={props.onChangeFiles}
-              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
-            />
-          ))}
-          {/* ////////////// 2차 이미지 실습 /////////////////////////// */}
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>
@@ -148,20 +132,12 @@ export default function BoardWriteUI(props) {
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
         <ButtonWrapper>
-          {!props.isEdit && (
-            <SubmitButton
-              onClick={props.onClickSubmit}
-              isActive={props.isActive}
-              // disabled={!props.isActive}
-            >
-              등록하기
-            </SubmitButton>
-          )}
-          {props.isEdit && (
-            <SubmitButton onClick={props.onClickUpdate} isActive={true}>
-              수정하기
-            </SubmitButton>
-          )}
+          <SubmitButton
+            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+            isActive={props.isEdit ? true : !props.isActive}
+          >
+            {props.isEdit ? "수정하기" : "등록하기"}
+          </SubmitButton>
         </ButtonWrapper>
       </Wrapper>
     </>
