@@ -12,11 +12,11 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
         주인님 자랑🐺
       </MenuItem>
       <>|</>
-      <MenuItem id="/markets" onClick={props.onClickMenu}>
+      <MenuItem id="/market" onClick={props.onClickMenu}>
         팝니다📢
       </MenuItem>
       <>|</>
-      <MenuItem id="/mypages" onClick={props.onClickMenu}>
+      <MenuItem id="/boards" onClick={props.onClickMenu}>
         가족이 되어주세요❤
       </MenuItem>
       <>|</>
