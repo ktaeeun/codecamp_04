@@ -1,8 +1,8 @@
-import CommonButton from "../../../commons/buttons/01/CommonButton";
-import RedButton from "../../../commons/buttons/02/RedButton";
-import CommonLabel from "../../../commons/texts/01/CommonLabel";
-import ErrorText from "../../../commons/texts/02/ErrorText";
-import Uploads02 from "../../../commons/uploads/02/Uploads02.container";
+import CommonButton from "../../commons/buttons/03/CommonButton";
+import RedButton from "../../commons/buttons/02/RedButton";
+import CommonLabel from "../../commons/text/01/commonText";
+import ErrorText from "../../commons/text/02/errorText";
+import Uploads02 from "../../commons/uploads/02/Uploads02.container";
 import {
   Wrapper,
   WrapperHeader,
@@ -12,7 +12,7 @@ import {
   InputWrapper,
   InputText,
   DetailWrapper,
-  DetailText,
+  // DetailText,
   MapWrapper,
   LocationWrapper,
   Location,
@@ -68,18 +68,18 @@ export default function MarketWriteUI(props: any) {
             {props.isEdit ? (
               <>
                 {props.data?.fetchUseditem.contents && (
-                  <DetailText // quill
-                    onChange={props.onChangeMyContents}
-                    modules={props.modules}
-                    defaultValue={props.data?.fetchUseditem.contents}
-                  />
+                  // <DetailText // quill
+                  //   onChange={props.onChangeMyContents}
+                  //   modules={props.modules}
+                  //   defaultValue={props.data?.fetchUseditem.contents}
+                  // />
                 )}
               </>
             ) : (
-              <DetailText // quill
-                onChange={props.onChangeMyContents}
-                modules={props.modules}
-              />
+              // <DetailText // quill
+              //   onChange={props.onChangeMyContents}
+              //   modules={props.modules}
+              // />
             )}
           </DetailWrapper>
           <ErrorText name={props.formState.errors.contents?.message} />
@@ -157,6 +157,6 @@ export default function MarketWriteUI(props: any) {
           </ButtonWrapper>
         </WrapperFooter>
       </Wrapper>
-    </form>
+     </form>
   );
 }
