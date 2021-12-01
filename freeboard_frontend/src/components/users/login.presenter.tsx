@@ -1,4 +1,4 @@
-// import BigCommonButton from "../../../commons/buttons/03/BigCommonButton";
+import BigCommonButton from "../../components/commons/buttons/01/BigCommonButton";
 import {
   Wrapper,
   LogoWrapper,
@@ -13,14 +13,14 @@ import {
   MenuWrapper,
   Menu,
   MenuLine,
-} from "./login.syles";
+} from "./login.styles";
 
 export default function LoginUI(props: any) {
   return (
     <>
       <Wrapper>
         <LogoWrapper>
-          <Logo>여천냥</Logo>
+          <Logo>여기가 천국이냥</Logo>
         </LogoWrapper>
         <Title>로그인하기</Title>
         <TextWrapper>
@@ -38,7 +38,7 @@ export default function LoginUI(props: any) {
             <StayLogin type="checkbox" />
             <StayLoginText>로그인 상태 유지하기</StayLoginText>
           </StayWraaper>
-          <button name="로그인하기" onClick={props.onClickLogin}></button>
+          <BigCommonButton name="로그인하기" onClick={props.onClickLogin} />
         </TextWrapper>
         <Line />
         <MenuWrapper>

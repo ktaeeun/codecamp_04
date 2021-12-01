@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 550px;
 `;
 
 export const LogoWrapper = styled.div`
@@ -12,7 +13,7 @@ export const LogoWrapper = styled.div`
 export const Logo = styled.div`
   font-family: LogoFont;
   font-style: "normal";
-  font-size: 130px;
+  font-size: 50px;
   /* text-align: center; */
   font-weight: bold;
   line-height: 27px;

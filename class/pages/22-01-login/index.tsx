@@ -42,7 +42,7 @@ export default function LoginPage() {
       },
     });
 
-    setAccessToken(result.data?.loginUser.accessToken);
+    setAccessToken?.(result.data?.loginUser.accessToken || "");
     // 여기서 setAccessToken 필요 (글로벌 스테이트에서 app.tsx)
 
     // 로그인 성공된 페이지로 이동시키기

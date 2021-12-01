@@ -6,7 +6,7 @@ import { LOGIN_USER } from "./login.queris";
 
 export default function Login() {
   const [loginUser] = useMutation(LOGIN_USER);
-  const { setAccessToken } = useContext(GlobalContext);
+  const { accessToken, setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
 
@@ -27,9 +27,8 @@ export default function Login() {
         },
       });
       // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
-      localStorage.setItem("refreshToken", "true");
-      setAccessToken(result.data?.loginUser.accessToken);
-      location.reload();
+      setAccessToken(result.data?.loginUser.accessToken || "");
+      localStorage.setItem("accessToken", accessToken);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

@@ -27,9 +27,12 @@ import {
   LikePhoto,
   TitleWrapper,
   BestBoardTitle,
+  TextToken,
 } from "./BoardList.styles";
 import Paginations01 from "../../commons/pagination/01/Pagination.container";
 import { IBoardListUIProps } from "./BoardList.types";
+import Searchbars01 from "../../commons/searchbars/01/Searchbars01.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -73,7 +76,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           </BestBoardBox>
         ))}
       </BestBoardContents>
-
+      <TableTop />
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>
@@ -84,7 +87,14 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
           <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
+            {el.title
+              .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
+              .split("@#$%")
+              .map((el) => (
+                <TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                  {el}
+                </TextToken>
+              ))}
           </ColumnTitle>
           <ColumnBasic>{el.writer}</ColumnBasic>
           <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
@@ -103,6 +113,11 @@ export default function BoardListUI(props: IBoardListUIProps) {
           게시물 등록하기
         </Button>
       </Footer>
+      <Searchbars01
+        refetch={props.refetch}
+        refetchBoardsCount={props.refetchBoardsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      />
     </Wrapper>
   );
 }
