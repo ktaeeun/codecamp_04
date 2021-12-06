@@ -62,7 +62,7 @@ export default function MarketDetail() {
           },
         ],
       });
-      alert("상품을 삭제합니다~");
+      alert("상품을 삭제합니다.");
       router.push(`/market/market-list`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -82,7 +82,7 @@ export default function MarketDetail() {
           },
         ],
       });
-      alert("상품을 구매합니다~");
+      alert("상품을 구매합니다.");
       router.push(`/market/market-list`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);

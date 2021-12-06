@@ -19,7 +19,7 @@ export const TitleWrapper = styled.div`
 export const Title = styled.div`
   font-family: LogoFont;
   font-style: "normal";
-  font-size: 200px;
+  font-size: 50px;
   text-align: center;
   font-weight: bold;
   line-height: 27px;

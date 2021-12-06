@@ -12,8 +12,8 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
         주인님 자랑🐺
       </MenuItem>
       <>|</>
-      <MenuItem id="/market" onClick={props.onClickMenu}>
-        팝니다📢
+      <MenuItem id="/market/market-list" onClick={props.onClickMenu}>
+        나눔마켓📢
       </MenuItem>
       <>|</>
       <MenuItem id="/boards" onClick={props.onClickMenu}>
