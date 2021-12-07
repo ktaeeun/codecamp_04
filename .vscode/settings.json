@@ -1,4 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "NyanCat.backgroundColor": "transparent", // Nyan Cat area background color, default is transparent, it accepts any css color string.
+  "NyanCat.name": "bday" // what you want to show the name, default is bday
 }
