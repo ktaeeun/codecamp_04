@@ -12,7 +12,7 @@ import {
   InputWrapper,
   InputText,
   DetailWrapper,
-  // DetailText,
+  DetailText,
   MapWrapper,
   LocationWrapper,
   Location,
@@ -65,22 +65,22 @@ export default function MarketWriteUI(props: any) {
           </InputWrapper>
           <DetailWrapper>
             <CommonLabel name="상품설명" />
-            {/* {props.isEdit ? (
+            {props.isEdit ? (
               <>
                 {props.data?.fetchUseditem.contents && (
-                  // <DetailText // quill
-                  //   onChange={props.onChangeMyContents}
-                  //   modules={props.modules}
-                  //   defaultValue={props.data?.fetchUseditem.contents}
-                  // />
+                  <DetailText // quill
+                    onChange={props.onChangeMyContents}
+                    modules={props.modules}
+                    defaultValue={props.data?.fetchUseditem.contents}
+                  />
                 )}
               </>
             ) : (
-              // <DetailText // quill
-              //   onChange={props.onChangeMyContents}
-              //   modules={props.modules}
-              // />
-            )} */}
+              <DetailText // quill
+                onChange={props.onChangeMyContents}
+                modules={props.modules}
+              />
+            )}
           </DetailWrapper>
           <ErrorText name={props.formState.errors.contents?.message} />
           <InputWrapper>

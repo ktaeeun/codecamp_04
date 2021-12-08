@@ -20,7 +20,7 @@ export default function LayoutNavigationUI(props: ILayoutNavigationUIProps) {
         가족이 되어주세요❤
       </MenuItem>
       <>|</>
-      <MenuItem id="/mypages" onClick={props.onClickMenu}>
+      <MenuItem id="/mypage" onClick={props.onClickMenu}>
         마이페이지🔒
       </MenuItem>
     </Wrapper>

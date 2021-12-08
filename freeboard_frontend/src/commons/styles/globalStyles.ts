@@ -7,7 +7,7 @@ export const globalStyles = css`
   }
 
   @font-face {
-    font-family: "myFont";
-    src: url("/Gaegu-Bold.ttf");
+    font-family: "myfont";
+    src: url("/fonts/Gaegu-Bold.ttf");
   }
 `;

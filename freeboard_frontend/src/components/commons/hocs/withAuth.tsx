@@ -9,7 +9,7 @@ export const withAuth = (Component) => (props) => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       alert("회원만 입장가능합니다.");
-      router.push("/");
+      router.push("/login");
     }
   }, []);
 

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
-// const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -40,11 +40,11 @@ export const DetailWrapper = styled.div`
   padding-top: 40px;
 `;
 
-// export const DetailText = styled(ReactQuill)`
-//   width: 100%;
-//   height: 320px;
-//   margin-bottom: 40px;
-// `;
+export const DetailText = styled(ReactQuill)`
+  width: 100%;
+  height: 320px;
+  margin-bottom: 40px;
+`;
 export const InputText = styled.input`
   width: 100%;
   height: 52px;

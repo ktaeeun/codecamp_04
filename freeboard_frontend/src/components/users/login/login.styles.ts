@@ -11,7 +11,7 @@ export const LogoWrapper = styled.div`
   margin-top: 80px;
 `;
 export const Logo = styled.div`
-  font-family: LogoFont;
+  font-family: myfont;
   font-style: "normal";
   font-size: 50px;
   /* text-align: center; */
@@ -22,7 +22,7 @@ export const Logo = styled.div`
 `;
 
 export const Title = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -44,7 +44,7 @@ export const Info = styled.input`
   margin-top: 30px;
   padding-left: 20px;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -62,7 +62,7 @@ export const StayLogin = styled.input`
   margin-right: 10px;
 `;
 export const StayLoginText = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -78,7 +78,7 @@ export const MenuWrapper = styled.div`
 `;
 export const Menu = styled.div`
   margin-right: 30px;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
