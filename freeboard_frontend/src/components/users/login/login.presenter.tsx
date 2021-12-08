@@ -1,4 +1,4 @@
-import BigCommonButton from "../../components/commons/buttons/01/BigCommonButton";
+import BigCommonButton from "../../commons/buttons/01/BigCommonButton";
 import {
   Wrapper,
   LogoWrapper,

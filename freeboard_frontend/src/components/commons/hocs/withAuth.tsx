@@ -6,7 +6,7 @@ export const withAuth = (Component) => (props) => {
   // const { accessToken } = useContext(GlobalContext);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("refreshToken");
+    const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       alert("회원만 입장가능합니다.");
       router.push("/");

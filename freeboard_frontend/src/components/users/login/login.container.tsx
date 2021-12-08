@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../../pages/_app";
+import { GlobalContext } from "../../../../pages/_app";
 import LoginUI from "./login.presenter";
 import { LOGIN_USER } from "./login.queris";
 

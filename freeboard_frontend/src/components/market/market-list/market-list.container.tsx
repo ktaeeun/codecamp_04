@@ -8,6 +8,7 @@ import {
   FETCH_USEDITEMS_OF_THE_BEST,
 } from "./market-list.queries";
 import {
+  IBoard,
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../../commons/types/generated/types";
@@ -69,13 +70,13 @@ export default function MarKetList() {
     });
   }
 
-  const onClickMoveToProduct = (el) => (event) => {
+  const onClickMoveToProduct = (el: IBoard) => (event: any) => {
     router.push(`/market/market-detail/${event.currentTarget.id}`);
 
-    const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+    const baskets = JSON.parse(localStorage.getItem("baskets") || "");
 
     let isExists = false;
-    baskets.forEach((basketEl) => {
+    baskets.forEach((basketEl: IBoard) => {
       if (el._id === basketEl._id) isExists = true;
     });
     if (isExists) {
