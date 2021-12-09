@@ -17,6 +17,9 @@ export default function LayoutHeader() {
   function onClickMoveToSignUp() {
     router.push("/signup");
   }
+  // function onClickMoveToMyPage() {
+  //   router.push(`/mypage/mymarket`);
+  // }
 
   return (
     <LayoutHeaderUI

@@ -1,6 +1,6 @@
 import CommonButton from "../../../components/commons/buttons/03/CommonButton";
 import RedButton from "../../../components/commons/buttons/02/RedButton";
-// import Dompurify from "dompurify";
+import Dompurify from "dompurify";
 
 import {
   Wrapper,
@@ -99,15 +99,15 @@ export default function MarketDetailUI(props: any) {
               ))}
           </PhotoWrapper>
           <ContentsWrapper>
-            {/* {process.browser && (
-              // <Contents
-              //   dangerouslySetInnerHTML={{
-              //     __html: Dompurify.sanitize(
-              //       props.data?.fetchUseditem.contents
-              //     ),
-              //   }}
-              // />
-            )} */}
+            {process.browser && (
+              <Contents
+                dangerouslySetInnerHTML={{
+                  __html: Dompurify.sanitize(
+                    props.data?.fetchUseditem.contents
+                  ),
+                }}
+              />
+            )}
           </ContentsWrapper>
           <TagWrapper>
             <Tag>{props.data?.fetchUseditem.tags}</Tag>

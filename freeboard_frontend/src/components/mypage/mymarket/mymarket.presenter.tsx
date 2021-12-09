@@ -23,12 +23,12 @@ export default function MyMarketUI(props: any) {
       <Wrapper>
         <WrapperHeader>
           <MenuWrapper>
-            <ProductMenu
+            {/* <ProductMenu
               onClick={props.onClickMyProductList}
               isPickList={props.isPickList}
             >
               나의 상품
-            </ProductMenu>
+            </ProductMenu> */}
             <PickMenu
               onClick={props.onClickMyPickList}
               isPickList={props.isPickList}

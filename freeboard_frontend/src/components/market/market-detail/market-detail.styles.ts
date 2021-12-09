@@ -42,7 +42,7 @@ export const IconWrapper = styled.div`
   align-items: center;
 `;
 export const Seller = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -50,7 +50,7 @@ export const Seller = styled.div`
   color: #000000;
 `;
 export const Date = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -77,7 +77,7 @@ export const TitleWrapper = styled.div`
 `;
 export const Title = styled.div``;
 export const SubTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -85,7 +85,7 @@ export const SubTitle = styled.div`
   color: #bdbdbd;
 `;
 export const MainTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -105,7 +105,7 @@ export const Heart = styled.img`
   cursor: pointer;
 `;
 export const LikeCount = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -117,7 +117,7 @@ export const LikeCount = styled.div`
   color: #000000;
 `;
 export const PriceWrapper = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -142,7 +142,7 @@ export const ContentsWrapper = styled.div`
   margin-top: 80px;
 `;
 export const Contents = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -153,7 +153,7 @@ export const TagWrapper = styled.div`
   margin-top: 40px;
 `;
 export const Tag = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

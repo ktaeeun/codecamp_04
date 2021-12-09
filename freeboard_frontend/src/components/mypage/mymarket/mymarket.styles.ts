@@ -14,7 +14,7 @@ export const WrapperHeader = styled.div`
 `;
 
 export const ProductMenu = styled.div<{ isPickList: boolean }>`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.isPickList === true ? "normal" : 800)};
   font-size: ${(props) => (props.isPickList === true ? "18px" : "25px")};
@@ -25,7 +25,7 @@ export const ProductMenu = styled.div<{ isPickList: boolean }>`
 `;
 
 export const PickMenu = styled.div<{ isPickList: boolean }>`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.isPickList === true ? 800 : "normal")};
   font-size: ${(props) => (props.isPickList === true ? "25px" : "18px")};
@@ -49,7 +49,7 @@ export const RowName = styled.div`
   align-items: center;
   margin-top: 16px;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -69,7 +69,7 @@ export const Row = styled.div`
 
   text-align: center;
   border-top: 1px solid #bdbdbd;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -82,7 +82,7 @@ export const Column = styled.div`
 
 export const ColumnSoldOut = styled.div`
   width: 20%;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

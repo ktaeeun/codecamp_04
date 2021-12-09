@@ -20,6 +20,9 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
+
+// import Head from "next/head";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -77,14 +80,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     cache: new InMemoryCache(),
   });
   return (
-    <GlobalContext.Provider value={myValue}>
-      <ApolloProvider client={client}>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </GlobalContext.Provider>
+    <>
+      {/* <Head> 모든 페이지에서 카카오맵을 다운로드받으므로 비효율적임
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=46cb9b27077ed3d6e977b8b172dbe1f1"
+        ></script>
+      </Head> */}
+      <GlobalContext.Provider value={myValue}>
+        <ApolloProvider client={client}>
+          <Global styles={globalStyles} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </GlobalContext.Provider>
+    </>
   );
 }
 

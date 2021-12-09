@@ -59,6 +59,7 @@ export default function MarketWrite(props: any) {
     setMyAddress(event.target.value);
   }
   async function onClickUploadProduct(data) {
+    console.log("datatatatatat", data);
     try {
       const uploadFiles = files
         .filter((el) => el)
@@ -80,9 +81,9 @@ export default function MarketWrite(props: any) {
           },
         },
       });
-      console.log(data);
+      console.log(result);
       alert("상품을 등록합니다.");
-      router.push(`/market/detail/${result.data.createUseditem._id}`);
+      router.push(`/market/market-detail/${result.data.createUseditem._id}`);
     } catch (error) {
       console.log(error.message);
     }

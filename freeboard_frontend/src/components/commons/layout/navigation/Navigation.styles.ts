@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  font-family: myfont;
   margin-top: 50px;
   height: 64px;
   background-color: #ffa07a;
@@ -13,6 +14,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MenuItem = styled.div`
+  font-family: myfont;
   margin: 0px 60px;
   cursor: pointer;
 
