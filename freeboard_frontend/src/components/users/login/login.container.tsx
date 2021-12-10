@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import LoginUI from "./login.presenter";
@@ -9,6 +10,8 @@ export default function Login() {
   const { accessToken, setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
+
+  const router = useRouter();
 
   function onChangeEmail(event: any) {
     setMyEmail(event.target.value);
@@ -29,6 +32,8 @@ export default function Login() {
       // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken || "");
       localStorage.setItem("accessToken", accessToken);
+      alert("로그인 되었습니다.");
+      router.push("/openapis");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

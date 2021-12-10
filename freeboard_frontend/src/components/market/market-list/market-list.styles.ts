@@ -17,7 +17,7 @@ export const TitleWrapper = styled.div`
   align-items: center;
 `;
 export const Title = styled.div`
-  font-family: LogoFont;
+  font-family: myfont;
   font-style: "normal";
   font-size: 50px;
   text-align: center;
@@ -52,7 +52,7 @@ export const BestProductPhoto = styled.img`
 
 export const BoxBody = styled.div``;
 export const BestProductName = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -67,7 +67,7 @@ export const BoxFooter = styled.div`
 `;
 export const BestProductInfo = styled.div``;
 export const BestProductSubTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -75,7 +75,7 @@ export const BestProductSubTitle = styled.div`
   color: #4f4f4f;
 `;
 export const BestProductPrice = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -88,7 +88,7 @@ export const ProductHeart = styled.img`
   height: 19px;
 `;
 export const BestProductLikeCount = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -109,7 +109,7 @@ export const MenuWrapper = styled.div`
   flex-direction: row;
 `;
 export const SellProduct = styled.div<{ soldOut: boolean }>`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.soldOut === true ? "normal" : 800)};
   font-size: ${(props) => (props.soldOut === true ? "18px" : "25px")};
@@ -119,7 +119,7 @@ export const SellProduct = styled.div<{ soldOut: boolean }>`
   cursor: pointer;
 `;
 export const SoldOutProduct = styled.div<{ soldOut: boolean }>`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.soldOut === true ? 800 : "normal")};
   font-size: ${(props) => (props.soldOut === true ? "25px" : "18px")};
@@ -148,7 +148,7 @@ export const SearchDate = styled.input`
   box-sizing: border-box;
   border-radius: 10px;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -162,7 +162,7 @@ export const SearchButton = styled.button`
   height: 52px;
   background: #000000;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -217,7 +217,7 @@ export const ProductInfo = styled.div`
   margin-top: 8px;
 `;
 export const ProductTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -229,7 +229,7 @@ export const ProductTitle = styled.div`
   color: #000000;
 `;
 export const ProductSubTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -238,7 +238,7 @@ export const ProductSubTitle = styled.div`
   color: #4f4f4f;
 `;
 export const ProductTag = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -266,7 +266,7 @@ export const ProductSellerWrapper = styled.div`
 `;
 
 export const ProductSeller = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -285,7 +285,7 @@ export const ProductLikeWrapper = styled.div`
   margin-left: 20px;
 `;
 export const ProductLikeCount = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -307,7 +307,7 @@ export const Money = styled.img`
   margin-right: 10px;
 `;
 export const ProductPrice = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

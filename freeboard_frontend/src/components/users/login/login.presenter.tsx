@@ -16,6 +16,11 @@ import {
 } from "./login.styles";
 
 export default function LoginUI(props: any) {
+  function enterKey() {
+    if (window.event.keyCode === 13) {
+      props.onClickLogin();
+    }
+  }
   return (
     <>
       <Wrapper>
@@ -33,6 +38,7 @@ export default function LoginUI(props: any) {
             type="password"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            onKeyUp={enterKey}
           />
           <StayWraaper>
             <StayLogin type="checkbox" />

@@ -5,6 +5,7 @@ import {
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import "antd/dist/antd.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
@@ -20,6 +21,8 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
+import { graphql } from "graphql";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 
 // import Head from "next/head";
 
@@ -64,19 +67,43 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setMyAccessToken(accessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // if (accessToken) setMyAccessToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccessToken(setMyAccessToken); // 새로고침할때마다 토큰이 날라감
   }, []);
 
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1. 토큰만료 에러 캐치
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          // 2. refreshToken으로 accessToken 재발급 받기 -> resotreAccessToken
+          //  const newAccessToken = getAccessToken(setMyAccessToken)
+
+          // 3. 기존에 실패한 요청 다시 재요청하기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setMyAccessToken)}`,
+            },
+          });
+
+          return forward(operation);
+        }
+      }
+    }
+  });
+
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${myAccessToken}`,
     },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
   return (
