@@ -11,8 +11,10 @@ export default function LayoutHeaderUI(props: IProps) {
       <InnerWrapper>
         <InnerLogo onClick={props.onClickLogo}>여기가 천국이냥</InnerLogo>
         <div>
-          <InnerButton onClick={props.onClickMoveToLogin}>LOGIN</InnerButton>
-          <InnerButton onClick={props.onClickMoveToSignUp}>SIGN UP</InnerButton>
+          <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
+          <InnerButton onClick={props.onClickMoveToSignUp}>
+            회원가입
+          </InnerButton>
         </div>
       </InnerWrapper>
     </Wrapper>

@@ -27,7 +27,7 @@ const RowName = styled.div`
 const ColumnName = styled.div`
   width: 25%;
   text-align: center;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -44,7 +44,7 @@ const Row = styled.div`
 const Column = styled.div`
   width: 25%;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -57,7 +57,7 @@ const Column = styled.div`
 const ColumnAmount = styled.div`
   width: 25%;
   text-align: center;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -72,7 +72,7 @@ const ColumnAmount = styled.div`
 const ColumnBalance = styled.div`
   width: 25%;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

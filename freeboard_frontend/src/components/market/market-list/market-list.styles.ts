@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import InfiniteScroll from "react-infinite-scroller";
 
 export const Wrapper = styled.div`
-  width: 100%;
+  width: 80%;
   padding-top: 80px;
   padding-bottom: 405px;
   display: flex;
@@ -27,7 +27,7 @@ export const Title = styled.div`
   text-shadow: 6px 6px #ffe87f;
 `;
 export const BestProductWrapper = styled.div`
-  width: 1200px;
+  width: 750px;
   margin-top: 40px;
 
   display: flex;

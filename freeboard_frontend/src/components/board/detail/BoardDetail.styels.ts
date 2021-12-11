@@ -3,11 +3,13 @@ import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
+  font-family: myfont;
   width: 1200px;
   margin: 100px;
 `;
 
 export const CardWrapper = styled.div`
+  font-family: myfont;
   border: 1px solid black;
   padding-top: 80px;
   padding-bottom: 100px;
@@ -21,6 +23,7 @@ export const CardWrapper = styled.div`
 `;
 
 export const Header = styled.div`
+  font-family: myfont;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -31,15 +34,18 @@ export const Header = styled.div`
 `;
 
 export const AvatarWrapper = styled.div`
+  font-family: myfont;
   display: flex;
   flex-direction: row;
 `;
 
 export const Avatar = styled.img`
+  font-family: myfont;
   margin-right: 10px;
 `;
 
 export const Info = styled.div`
+  font-family: myfont;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,11 +56,13 @@ export const Writer = styled.div``;
 export const CreatedAt = styled.div``;
 
 export const Body = styled.div`
+  font-family: myfont;
   width: 100%;
   min-height: 800px;
 `;
 
 export const Title = styled.h1`
+  font-family: myfont;
   padding-top: 80px;
 `;
 
@@ -71,6 +79,7 @@ export const BottomWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  font-family: myfont;
   width: 179px;
   height: 45px;
   background-color: white;
@@ -104,6 +113,7 @@ export const LinkIcon = styled.img``;
 export const LocationIcon = styled.img``;
 
 export const LikeIcon = styled(LikeOutlined)`
+  font-family: myfont;
   font-size: 24px;
   color: #ffd600;
   margin: 0px 20px;
@@ -111,6 +121,7 @@ export const LikeIcon = styled(LikeOutlined)`
 `;
 
 export const DislikeIcon = styled(DislikeOutlined)`
+  font-family: myfont;
   font-size: 24px;
   color: #828282;
   margin: 0px 20px;

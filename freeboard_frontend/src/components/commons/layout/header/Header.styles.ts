@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  font-family: myfont;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -9,6 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper = styled.div`
+  font-family: myfont;
   width: 1200px;
   display: flex;
   flex-direction: row;
@@ -19,6 +21,7 @@ export const InnerWrapper = styled.div`
 `;
 
 export const InnerLogo = styled.div`
+  font-family: myfont;
   font-size: 18px;
   font-weight: bold;
   font-family: "live";
@@ -28,6 +31,7 @@ export const InnerLogo = styled.div`
 `;
 
 export const InnerButton = styled.span`
+  font-family: myfont;
   margin: 10px;
   color: #5729ff;
   cursor: pointer;

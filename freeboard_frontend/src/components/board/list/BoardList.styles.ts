@@ -28,7 +28,7 @@ export const Row = styled.div`
 `;
 
 export const BestBoardTitle = styled.div`
-  font-family: LogoFont;
+  font-family: myfont;
   font-style: "normal";
   font-size: 20px;
   text-align: center;
@@ -70,7 +70,7 @@ export const BestText = styled.div`
 `;
 
 export const BestTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -95,7 +95,7 @@ export const profilePhoto = styled.div`
   size: 20px;
 `;
 export const ProfileName = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -109,7 +109,7 @@ export const ProfileName = styled.div`
   margin-left: 6px;
 `;
 export const BestDate = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -129,7 +129,7 @@ export const BestLike = styled.div`
 `;
 export const LikePhoto = styled.div``;
 export const LikeCount = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -181,6 +181,7 @@ export const Footer = styled.div`
 export const PencilIcon = styled.img``;
 
 export const Button = styled.button`
+  font-family: myfont;
   width: 171px;
   height: 52px;
   background-color: white;
@@ -197,6 +198,7 @@ export const Button = styled.button`
 `;
 
 export const TitleWrapper = styled.div`
+  font-family: myfont;
   width: 100%;
   height: 200px;
   display: flex;

@@ -6,5 +6,5 @@ export const Wrapper = styled.div`
 
 export const SliderItem = styled.img`
   width: 2000px;
-  height: 1000px;
+  height: 550px;
 `;

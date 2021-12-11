@@ -8,6 +8,6 @@ export const globalStyles = css`
 
   @font-face {
     font-family: "myfont";
-    src: url("/fonts/Gaegu-Bold.ttf");
+    src: url("/fonts/배스킨라빈스 R.ttf");
   }
 `;

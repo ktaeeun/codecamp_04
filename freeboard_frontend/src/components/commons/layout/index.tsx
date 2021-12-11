@@ -3,7 +3,7 @@ import { ReactChild } from "react";
 import Header from "./header/Header.container";
 import Banner from "./banner/Banner.contatiner";
 import Navigation from "./navigation/Navigation.container";
-import Footer from "./footer/Footer.container";
+import Sidebar from "./side/side.container";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div``;
@@ -21,6 +21,12 @@ const HIDDEN_HEADERS = ["/boards/new"];
 interface ILayoutProps {
   children: ReactChild;
 }
+const SideWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export default function Layout(Props: ILayoutProps) {
   const router = useRouter();
@@ -33,10 +39,12 @@ export default function Layout(Props: ILayoutProps) {
       {!isHiddenHeader && <Header />}
       <Banner />
       <Navigation />
-      <BodyWrapper>
-        <Body>{Props.children}</Body>
-      </BodyWrapper>
-      <Footer />
+      <SideWrapper>
+        <Sidebar />
+        <BodyWrapper>
+          <Body>{Props.children}</Body>
+        </BodyWrapper>
+      </SideWrapper>
     </Wrapper>
   );
 }
