@@ -33,7 +33,7 @@ export default function MarketCommentsWrite(props) {
           },
         ],
       });
-      alert("댓글을 등록합니다~");
+      alert("댓글을 등록합니다.");
     } catch (error) {
       alert(error.message);
     }
@@ -56,7 +56,7 @@ export default function MarketCommentsWrite(props) {
         ],
       });
       props.setIsQuestionEdit?.(false);
-      alert("질문을 수정합니다~");
+      alert("댓글을 수정합니다.");
     } catch (error) {
       alert(error.message);
     }

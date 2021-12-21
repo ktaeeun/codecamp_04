@@ -5,9 +5,7 @@ const MyButton = styled.button`
   height: 52px;
   background-image: linear-gradient(
     to right,
-    #e0eafc 0%,
-    #35c584 90%,
-    #35c584 100%
+    #e0eafc 0%
   ); /* padding: 15px 45px; */
   text-align: center;
   text-transform: uppercase;
@@ -17,7 +15,7 @@ const MyButton = styled.button`
   box-shadow: 0 0 20px #eee;
   display: block;
   border: none;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

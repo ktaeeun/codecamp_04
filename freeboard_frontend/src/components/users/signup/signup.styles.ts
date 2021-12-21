@@ -28,7 +28,7 @@ export const TitleWrapper = styled.div`
   margin-top: 30px;
 `;
 export const Title = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 700;
   font-size: 50px;
@@ -36,7 +36,7 @@ export const Title = styled.div`
   margin-bottom: 10px;
 `;
 export const SubTitle = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
@@ -68,14 +68,14 @@ export const Info = styled.input`
   border: 1px solid #bdbdbd;
   border-radius: 5px;
 
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
 
   margin-top: 20px;
   padding-left: 20px;
 `;
 
 export const Error = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   color: red;
   margin-left: 10px;
   margin-top: 5px;

@@ -16,7 +16,7 @@ export const InnerWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: "Gaegu-bold.ttf";
+
   font-size: 18px;
 `;
 
@@ -24,15 +24,15 @@ export const InnerLogo = styled.div`
   font-family: myfont;
   font-size: 18px;
   font-weight: bold;
-  font-family: "live";
+
   font-style: italic;
-  color: #5729ff;
+  color: tomato;
   cursor: pointer;
 `;
 
 export const InnerButton = styled.span`
   font-family: myfont;
   margin: 10px;
-  color: #5729ff;
+  color: tomato;
   cursor: pointer;
 `;

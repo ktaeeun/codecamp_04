@@ -36,7 +36,7 @@ export default function MarketAnswerWrite(props) {
           },
         ],
       });
-      alert("답변을 등록합니다~");
+      alert("답변을 등록합니다.");
       props.serIsOpenAnswer(false);
     } catch (error) {
       alert(error.message);
@@ -60,7 +60,7 @@ export default function MarketAnswerWrite(props) {
         ],
       });
       props.setIsAnswerEdit?.(false);
-      alert("답변을 수정합니다~");
+      alert("답변을 수정합니다.");
     } catch (error) {
       alert(error.message);
     }

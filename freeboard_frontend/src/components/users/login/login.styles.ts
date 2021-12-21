@@ -4,7 +4,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 550px;
 `;
 
 export const LogoWrapper = styled.div`

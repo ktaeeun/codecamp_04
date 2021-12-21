@@ -57,7 +57,7 @@ export default function MarketCommentListItemUI(props) {
               <Button
                 onClick={props.onClickDelete(props.el?._id)}
                 // id={props.el?._id}
-                src="/images/deleteicon.png"
+                src="/images/x.png"
               />
             </ButtonWrapper>
           </CommentWrapper>

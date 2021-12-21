@@ -3,12 +3,7 @@ import styled from "@emotion/styled";
 const MyButton = styled.button`
   width: 179px;
   height: 52px;
-  background-image: linear-gradient(
-    to right,
-    #ffd194 0%,
-    #cd5c5c 90%,
-    #cd5c5c 100%
-  );
+  background-image: linear-gradient(to right, #cd5c5c 100%);
   margin: 0px 30px;
   padding: 15px 45px;
   text-align: center;
@@ -19,7 +14,7 @@ const MyButton = styled.button`
   box-shadow: 0 0 20px #eee;
   display: block;
   border: none;
-  font-family: Noto Sans CJK KR;
+  font-family: myfont;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

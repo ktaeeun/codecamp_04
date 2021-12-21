@@ -45,7 +45,7 @@ export default function MarketAnswerListItemUI(props) {
               />
               <Button
                 onClick={props.onClickDeleteAnswer(props.answerel?._id)}
-                src="/images/deleteicon.png"
+                src="/images/x.png"
               />
             </ButtonWrapper>
           </WrapperFooter>
